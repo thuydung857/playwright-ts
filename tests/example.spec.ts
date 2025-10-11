@@ -10,6 +10,7 @@ import { test, expect } from '@playwright/test';
 ///3. sau khi chay xong => page va browsercontext tuong ugn se bi huy bo
 //framework => dung bo khung de co the s u dunfg duoc
 
+
 test('has title', async ({ page, context }) => {
   //Tab 1: Trang playwright
   const playwrightPage = page
