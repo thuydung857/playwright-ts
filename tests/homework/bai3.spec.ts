@@ -41,7 +41,7 @@ test('Bai tap 1 - getByRole', async ({ page }) => {
 // Tương tác với ô nhập được gắn label qua aria-labelledby là "Mã nội bộ".
 // Click "Tải dữ liệu" và chờ live region thông báo "Đã tải 3 kết quả".
 
-test('Bai tap 1 - getByRole', async ({ page }) => {
+test('Bai tap 2 - getByRole', async ({ page }) => {
   await page.goto('https://demoapp-sable-gamma.vercel.app/')
   await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click()
   await page.getByRole('button', { name: 'Playwright getByRole' }).click()
