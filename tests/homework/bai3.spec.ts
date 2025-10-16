@@ -11,25 +11,25 @@ import { log } from 'node:console';
 // Khẳng định nút "Publish" đang disabled.
 
 
-// test('Bai tap 1 - getByRole', async ({ page }) => {
-//     await page.goto('https://demoapp-sable-gamma.vercel.app/')
-//     await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click()
-//     await page.getByRole('button', { name: 'Playwright getByRole' }).click()
-//     await page.getByRole('button', { name: 'Bài tập' }).click()
-//     await page.getByRole('button', { name: 'Bold', pressed: true }).click()
-//     const moreOptionButton = page.getByRole('button', { name: 'More options', expanded: false })
-//     moreOptionButton.click()
-//     const duplicateItem = page.getByRole('menuitem', { name: 'Duplicate' })
-//     await expect(duplicateItem).toBeVisible()
-//     const download = page.getByRole('menuitem', { name: 'Download (disabled)', disabled: true })
-//     await expect(download).toBeDisabled()
-//     await page.getByRole('combobox', { name: 'Font family' }).click()
-//     await page.getByRole('option', { name: 'Roboto' }).click()
-//     await page.getByRole('textbox', { name: 'Tiêu đề' }).fill('Bài viết mới.')
-//     const publish = page.getByRole('button', { name: 'Publish', disabled: true })
-//     await expect(publish).toBeDisabled()
-//     await page.pause()
-// })
+test('Bai tap 1 - getByRole', async ({ page }) => {
+  await page.goto('https://demoapp-sable-gamma.vercel.app/')
+  await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click()
+  await page.getByRole('button', { name: 'Playwright getByRole' }).click()
+  await page.getByRole('button', { name: 'Bài tập' }).click()
+  await page.getByRole('button', { name: 'Bold', pressed: true }).click()
+  const moreOptionButton = page.getByRole('button', { name: 'More options', expanded: false })
+  moreOptionButton.click()
+  const duplicateItem = page.getByRole('menuitem', { name: 'Duplicate' })
+  await expect(duplicateItem).toBeVisible()
+  const download = page.getByRole('menuitem', { name: 'Download (disabled)', disabled: true })
+  await expect(download).toBeDisabled()
+  await page.getByRole('combobox', { name: 'Font family' }).click()
+  await page.getByRole('option', { name: 'Roboto' }).click()
+  await page.getByRole('textbox', { name: 'Tiêu đề' }).fill('Bài viết mới.')
+  const publish = page.getByRole('button', { name: 'Publish', disabled: true })
+  await expect(publish).toBeDisabled()
+  await page.pause()
+})
 
 
 
@@ -41,7 +41,7 @@ import { log } from 'node:console';
 // Tương tác với ô nhập được gắn label qua aria-labelledby là "Mã nội bộ".
 // Click "Tải dữ liệu" và chờ live region thông báo "Đã tải 3 kết quả".
 
-test('Bai tap 1 - getByRole', async ({ page }) => {
+test('Bai tap 2 - getByRole', async ({ page }) => {
   await page.goto('https://demoapp-sable-gamma.vercel.app/')
   await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click()
   await page.getByRole('button', { name: 'Playwright getByRole' }).click()
