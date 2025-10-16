@@ -24,3 +24,5 @@ test('Kiem tra message va su dung auto wait va assertion', async ({ page }) => {
   //check text cuối cùng là đủ vì playwright tự động waiting ko cần check đang tải dữ liệu
   await expect(page.locator('#final-step')).toContainText('Chào mừng bạn đã quay trở lại!');
 });
+
+
