@@ -50,15 +50,31 @@ test('Vai tro ngam dinh', async ({ page }) => {
 
 
     await page.getByRole('button', { name: 'CSS Selector' }).click()
-    await page.getByRole('button', { name: 'Chỉnh sửa' }).click()
-    page.once('dialog', dialog => {
-        console.log(`Dialog message: ${dialog.message()}`);
-        dialog.dismiss().catch(() => { });
-    });
+    // await page.getByRole('button', { name: 'Chỉnh sửa' }).click()
+    // page.once('dialog', dialog => {
+    //     console.log(`Dialog message: ${dialog.message()}`);
+    //     dialog.dismiss().catch(() => { });
+    // });
     await page.pause()
 
 
 
+    //CSS selector
+    //<input placeholder="Nhập tên đăng nhập" type="text" name="username" style="padding: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px;">
+    //[attribute='']  = [placeholder='Nhập tên đăng nhập'] = [name='username']\
+    //locator('[data-action="submit"][data-variant="primary"]')
+    // locator('button[data-action="submit"][data-variant="secondary"]')
+    //locator('input[type="text"][name="username"][required]')
+    await page.locator("[name='username']").fill('Dung')
+    await page.pause()
+    // .discount-badge
+    // div.featured button.add-cart
+    // span[class*='out-of-stock']
+
+
+    // table.user-table .inactive
+    // table.user-table button.btn-delete[data-user='002']
+    // table.user-table tr.user-row:last-child
 
 
 });
