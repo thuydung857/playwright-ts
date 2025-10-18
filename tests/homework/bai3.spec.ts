@@ -69,6 +69,44 @@ test('Bai tap 2 - getByRole', async ({ page }) => {
   await expect(liveRegion).toHaveText('Đã tải 3 kết quả', { timeout: 5000 });
   await page.pause()
 
+
+
+  //CSS Selector
+  //Bài tập 3: Complex Form Validation - Sibling & Parent-Child Selectors
+  //Câu 3a: Tìm tất cả input fields có lỗi validation (class "invalid")
+  // form.registration-form .invalid
+
+  // Câu 3b: Tìm error message của field "email"
+  // div[data-field='email'] span
+
+  // Câu 3c: Tìm tất cả required labels trong section "personal-info"
+  // .personal-info label.required
+
+  //Câu 3d: Tìm submit button bị disabled
+  // div.form-actions button:disabled
+
+
+  // Bài tập 4: Modal Dialog & Overlay - Advanced State Selectors
+  //Câu 4a: Tìm modal overlay đang active
+  //.modal-overlay.active
+
+  //Câu 4b: Tìm tất cả checkbox đã được checked trong modal
+  //.modal-overlay.active input:checked
+
+  //Câu 4c: Tìm close button trong modal header
+  //.modal-header button
+
+
+
+  //Bài tập 5: Dynamic Content & AJAX Loading - Contains & Partial Match
+  //Câu 5a: Tìm tất cả sản phẩm có title chứa từ "Gaming Laptop"
+  //.results-section h5[data-title*='Gaming Laptop']
+
+  //Câu 5b: Tìm sản phẩm có availability "low-stock"
+  //.results-section div[data-availability='low-stock']
+
+  //Câu 5c: Tìm nút "Add to Cart" của sản phẩm có giá dưới $100
+  //.results-section div[data-price="49.99"] .btn-add-cart 
 })
 
 
