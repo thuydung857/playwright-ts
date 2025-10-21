@@ -111,4 +111,51 @@ test("Bai tap 2 - getByRole", async ({ page }) => {
 
   //Câu 5c: Tìm nút "Add to Cart" của sản phẩm có giá dưới $100
   //.results-section div[data-price="49.99"] .btn-add-cart
+
+
+
+
+
+
+  //Xpath
+  //Bài tổng hợp 1: Shop Homepage
+  //1. Chọn tất cả nút Add to Cart trong trang
+  ////button[text()='Add to Cart']
+
+  //2. Chọn product-card có data-category='electronics'
+  ////div[@class='product-card' and @data-category='electronics']
+
+  //3. Từ nút Add to Cart, đi lên cha là product-card
+  ////button[text()='Add to Cart']/ancestor::div[@class='product-card']
+  ////button[text()='Add to Cart']/parent::div/parent::div
+
+  //4.Chọn product-card có data-price='49' VÀ data-category='clothing'
+  ////div[@class='product-card' and @data-category='clothing' and @data-price='49']
+
+  //5.Chọn product-card chứa text iPhone (sử dụng contains(.,...))
+  ////div[@class='product-card']/*[contains(text(),'15')]
+
+
+  //Bài tổng hợp 2: User Dashboard
+  //1. Chọn user-card có data-role='admin' VÀ data-status='active'
+  ////div[@class='user-card' and @data-role='admin' and @data-status='active']
+
+  //2. Chọn button có class btn-primary HOẶC btn-secondary
+  ////button[@class='btn-primary' or @class='btn-secondary']
+
+
+  // Chọn tất cả h4 VÀ button trong dashboard (dùng union |)
+  ////h4 | //button
+
+  // Chọn button Edit User của admin đang active (dùng điều kiện cha) : KHONG HIEU CAU HOI NAY'
+
+
+
+
+  //Bài tổng hợp 3: Article Listing
+  // Chọn h3 có text chính xác Welcome to Docs
+  // Chọn phần tử chứa chuỗi Price: $999 (dùng contains(normalize-space(.), ...))
+  // Chọn button có text bắt đầu với Buy
+  // Từ h3 "Highlights: Product Tips", chọn anh em kế tiếp là p (following-sibling)
+
 });

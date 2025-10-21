@@ -78,3 +78,22 @@ test('Vai tro ngam dinh', async ({ page }) => {
 
 
 });
+
+//Xpath
+test.only('Xpath selector', async ({ page }) => {
+    await page.goto('https://demoapp-sable-gamma.vercel.app/')
+    await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click()
+    await page.getByRole('button', { name: 'Xpath Selector' }).click()
+    await page.locator('//input[@name="email"]').fill('abc@gmail.com');
+    await page.pause();
+});
+
+
+//Xpath
+test.only('getBy Nang cao', async ({ page }) => {
+    await page.goto('https://demoapp-sable-gamma.vercel.app/')
+    await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click()
+    await page.getByRole('button', { name: 'Playwright getBy Nâng cao' }).click()
+    await page.getByLabel('Email:').fill('abc@gmail.com')
+    await page.pause();
+});
