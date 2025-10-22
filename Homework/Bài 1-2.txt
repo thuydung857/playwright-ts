@@ -1,6 +1,5 @@
 Su dung trang web https://demoapp-sable-gamma.vercel.app/lesson1
 
-
 lam phan bai 1 nang cao 
 check duoc ouput la Chào mừng bạn đã quay trở lại!
 su dung auto wait va webfirst assertion
