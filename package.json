@@ -3,12 +3,27 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "type": "module",
+  "scripts": {
+    "lint": "eslint tests/**/*.ts",
+    "lint:fix": "eslint tests/**/*.ts --fix",
+    "format": "prettier --write tests/**/*.ts",
+    "format:check": "prettier --check tests/**/*.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.38.0",
     "@playwright/test": "^1.56.0",
-    "@types/node": "^24.7.0"
+    "@types/node": "^24.7.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "eslint-plugin-playwright": "^2.2.2"
   }
 }
