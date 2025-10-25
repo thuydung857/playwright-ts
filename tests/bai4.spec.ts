@@ -34,8 +34,6 @@ test('Cấp 2: Giới hạn của phòng ban', async ({ page }) => {
   await slowButton2.click();
 });
 
-//Cấp 3: Giới hạn của công ty
-
 test('Cấp 3: Giới hạn công ty', async ({ page }) => {
   await page.goto(DEMO_URL);
 
@@ -458,4 +456,55 @@ test('toHaveClass 2', async ({ page }) => {
   //   await expect(page.locator('#text-container')).toContainText('john');
 
   await expect(page.locator('#class-target')).toHaveClass('highlight');
+});
+
+//toHaveAttribute
+test('toHaveAttribute', async ({ page }) => {
+  await page.goto(DEMO_URL);
+
+  await page.getByRole('link', { name: 'Bài 1: Auto-Wait Demo' }).click();
+
+  await page.getByRole('button', { name: 'expect() có await' }).click();
+
+  await page.locator('#btn-toggle-attr').click();
+
+  //   await expect(page.locator('#text-container')).toContainText('john');
+
+  await expect(page.locator('#avatar')).toHaveAttribute('alt', 'User Avatar');
+});
+
+//toHaveId
+test('toHaveId', async ({ page }) => {
+  await page.goto(DEMO_URL);
+
+  await page.getByRole('link', { name: 'Bài 1: Auto-Wait Demo' }).click();
+
+  await page.getByRole('button', { name: 'expect() có await' }).click();
+
+  await expect(page.locator('#unique-id')).toHaveId('unique-id');
+});
+
+//toBeInViewport
+test('toBeInViewport', async ({ page }) => {
+  await page.goto(DEMO_URL);
+
+  await page.getByRole('link', { name: 'Bài 1: Auto-Wait Demo' }).click();
+
+  await page.getByRole('button', { name: 'expect() có await' }).click();
+  await page.locator('#viewport-target').scrollIntoViewIfNeeded();
+
+  await expect(page.locator('#viewport-target')).toBeInViewport();
+  await expect(page.locator('#viewport-target')).toBeVisible();
+});
+
+//toHaveText
+test('toHaveText', async ({ page }) => {
+  await page.goto(DEMO_URL);
+
+  await page.getByRole('link', { name: 'Bài 1: Auto-Wait Demo' }).click();
+
+  await page.getByRole('button', { name: 'expect() có await' }).click();
+  await page.locator('#btn-whitespace-text').click();
+  const expectedMessage = page.locator('#status-text');
+  await expect(expectedMessage).toContainText('Data loaded successfully!');
 });
