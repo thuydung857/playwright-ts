@@ -107,7 +107,7 @@ test('Vai tro ngam dinh', async ({ page }) => {
 
 // product-card featured
 
-test('Xpath selector1', async ({ page }) => {
+test('Xpath selector', async ({ page }) => {
     await page.goto('https://demoapp-sable-gamma.vercel.app/');
 
     await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click();
@@ -173,8 +173,9 @@ test('Xpath selector1', async ({ page }) => {
 //   <h5>iPhone 15</h5>
 //   <button>Add to Cart</button> -> lai co nhieu phan tu giong nhau
 // </div>;
+
 //Xpath
-test('Xpath selector', async ({ page }) => {
+test('Xpath selector1', async ({ page }) => {
     await page.goto('https://demoapp-sable-gamma.vercel.app/')
     await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click()
     await page.getByRole('button', { name: 'Xpath Selector' }).click()
