@@ -107,7 +107,7 @@ test('Vai tro ngam dinh', async ({ page }) => {
 
 // product-card featured
 
-test.only('Xpath selector', async ({ page }) => {
+test('Xpath selector', async ({ page }) => {
     await page.goto('https://demoapp-sable-gamma.vercel.app/');
 
     await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click();
@@ -173,10 +173,8 @@ test.only('Xpath selector', async ({ page }) => {
 //   <button>Add to Cart</button> -> lai co nhieu phan tu giong nhau
 // </div>;
 
-});
-
 //Xpath
-test.only('Xpath selector', async ({ page }) => {
+test('Xpath selector1', async ({ page }) => {
     await page.goto('https://demoapp-sable-gamma.vercel.app/')
     await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click()
     await page.getByRole('button', { name: 'Xpath Selector' }).click()
@@ -186,7 +184,7 @@ test.only('Xpath selector', async ({ page }) => {
 
 
 //Xpath
-test.only('getBy Nang cao', async ({ page }) => {
+test('getBy Nang cao', async ({ page }) => {
     await page.goto('https://demoapp-sable-gamma.vercel.app/')
     await page.getByRole('link', { name: 'Bài 2: Playwright Locators' }).click()
     await page.getByRole('button', { name: 'Playwright getBy Nâng cao' }).click()
