@@ -123,6 +123,7 @@ test('Xpath selector', async ({ page }) => {
     //   await page.locator('.product-card').filter({ hasText: 'iPhone 15 Pro' }).nth(0);
     await page.pause();
 });
+
 //minh co the noi tiep cac locator voi nhau => tu cha -> con
 
 //duong dan tuyet doi
