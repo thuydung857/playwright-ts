@@ -138,12 +138,12 @@ test('ví dụ về iframe', async ({ page }) => {
 
   page.on('console', (msg) => console.log('[BROWSER]', msg.text()));
 
-  const checkImage = await isImageOk(page, "//img[@alt='Vite Logo']");
-  expect(checkImage).toBeTruthy();
+  const checkImage = await isImageOk(page, "//img[@alt='Broken 404']");
+  expect(checkImage).toBeFalsy();
 });
 
 test('ví dụ về evaluate', async ({ page }) => {
-  await page.goto('http://localhost:5173/');
+  await page.goto('https://demoapp-sable-gamma.vercel.app');
 
   await page.getByRole('link', { name: 'Bài 5: Shadow DOM & iFrame' }).click();
 
@@ -155,18 +155,75 @@ test('ví dụ về evaluate', async ({ page }) => {
   //   });
   //   await page.locator('#demo-input-1').getAttribute('className');
   //   await page.locator('#demo-input-1').getAttribute('type');
-  const domInfo = await page.locator('#demo-input-1').evaluate((el: HTMLInputElement) => {
+  //   const domInfo = await page.locator('#demo-input-1').evaluate((el: HTMLInputElement) => {
+  //     return {
+  //       value: el.value,
+  //       placeholder: el.placeholder,
+  //       type: el.type,
+  //       disabled: el.disabled,
+  //       maxLength: el.maxLength,
+  //       className: el.className,
+  //       defaultValue: el.defaultValue,
+  //       selectionStart: el.selectionStart, // Không có native method
+  //       selectionEnd: el.selectionEnd, // Không có native method
+  //     };
+  //   });
+  //   console.log('DOM Info:', domInfo);
+  page.on('console', (msg) => console.log('[BROWSER]', msg.text()));
+
+  // const panel = page.getByRole('tabpanel', { name: '🔧 evaluate()' });
+  // const input = panel.locator('#demo-input-1');
+
+  // // 1) Gõ nội dung
+  // await input.fill('Hello Playwright');
+
+  // // 2) Chọn đoạn text “Hello” (từ index 0 đến 5)
+  // await input.evaluate((el: HTMLInputElement) => {
+  //   el.setSelectionRange(0, 5, 'forward');
+  // });
+
+  // await page.pause();
+
+  // // 3) Đọc selection range (cần evaluate)
+  // const selection = await input.evaluate((el: HTMLInputElement) => ({
+  //   selectionStart: el.selectionStart,
+  //   selectionEnd: el.selectionEnd,
+  //   selectionDirection: el.selectionDirection,
+  // }));
+  // console.log(selection); // { selectionStart: 0, selectionEnd: 5, selectionDirection: 'forward' }
+
+  // // 4) Thay thế đoạn đã chọn bằng chuỗi khác (mô phỏng user gõ)
+  // await input.type('Hi');
+  // // Lúc này value: "Hi Playwright"
+
+  // // 5) Chọn từ vị trí 3 đến hết và xoá
+  // await input.evaluate((el: HTMLInputElement) => {
+  //   el.setSelectionRange(3, el.value.length, 'backward');
+  // });
+  // await page.keyboard.press('Delete');
+  // Kỳ vọng: còn lại "Hi "
+
+  const element = page.locator('#style-demo-element');
+
+  // Đọc một style property
+  const backgroundColor = await element.evaluate((el: HTMLElement) => {
+    return window.getComputedStyle(el).backgroundColor;
+  });
+  console.log('Background color:', backgroundColor); // "rgb(230, 247, 255)"
+
+  // Đọc nhiều styles cùng lúc
+  const styles = await element.evaluate((el: HTMLElement) => {
+    const computed = window.getComputedStyle(el);
     return {
-      value: el.value,
-      placeholder: el.placeholder,
-      type: el.type,
-      disabled: el.disabled,
-      maxLength: el.maxLength,
-      className: el.className,
-      defaultValue: el.defaultValue,
-      selectionStart: el.selectionStart, // Không có native method
-      selectionEnd: el.selectionEnd, // Không có native method
+      backgroundColor: computed.backgroundColor,
+      color: computed.color,
+      fontSize: computed.fontSize,
+      fontWeight: computed.fontWeight,
+      padding: computed.padding,
+      border: computed.border,
+      borderRadius: computed.borderRadius,
     };
   });
-  console.log('DOM Info:', domInfo);
+  console.log('All styles:', styles);
 });
+//
