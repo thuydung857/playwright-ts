@@ -150,8 +150,13 @@ test.describe('HRML Login Page - UI', () => {
 
     //có 2 cách. 1 là làm giống TC9
     //2 là get attribute của 2 ô input và so sánh với yêu cầu của đề bài
+    await expect(page.locator('#iusername')).toHaveAttribute('placeholder', 'Your Username');
+    await expect(page.locator('#ipassword')).toHaveAttribute('placeholder', 'Enter Password');
     // là page.locator().getAttribute('tên của attribute')
-    // const dataId = await element.getAttribute('data-id');
-    //
+    const userNamePlaceHolder = await page.locator('#iusername').getAttribute('placeholder');
+    expect(userNamePlaceHolder).toBe('Your Username');
+
+    const passwordPlaceHolder = await page.locator('#ipassword').getAttribute('placeholder');
+    expect(passwordPlaceHolder).toBe('Enter Password');
   });
 });
