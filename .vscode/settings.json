@@ -10,5 +10,8 @@
   ],
   "typescript.preferences.includePackageJsonAutoImports": "auto",
   "editor.rulers": [100],
-  "files.eol": "\r\n"
+  "files.eol": "\r\n",
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }
