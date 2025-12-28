@@ -4,7 +4,7 @@ const DEMO_URL = 'https://demoapp-sable-gamma.vercel.app/';
 
 //Cấp 1: Mệnh lệnh của sếp
 
-test('Cấp 1: Mệnh lệnh của sếp', async ({ page }) => {
+test('Các cấp độ auto waiting trong PW', async ({ page }) => {
   await page.goto(DEMO_URL);
 
   await page.getByRole('link', { name: 'Bài 1: Auto-Wait Demo' }).click();

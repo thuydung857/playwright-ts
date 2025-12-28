@@ -4,7 +4,7 @@ import { timeStamp } from 'console';
 const DEMO_URL = 'https://demoapp-sable-gamma.vercel.app/';
 
 test('Get text() display:none', async ({ page }) => {
-  await page.goto('DEMO_URL');
+  await page.goto(DEMO_URL);
 
   await page.getByRole('link', { name: 'Bài 3: Tổng hợp Text Methods' }).click();
 
@@ -202,7 +202,7 @@ test('Bài tập ecommerce', async ({ page }) => {
   expect(st).toBeTruthy();
 });
 
-// .toHavePropert
+// .toHaveProperty
 test('toHaveProperty', () => {
   const user = {
     id: 1,
@@ -308,7 +308,7 @@ interface IMovieData {
   rating: number;
   genres: string[];
   isLiked: boolean;
-  inList: boolean;
+  // inList: boolean;
 }
 
 test('Bài tập UI Movies', async ({ page }) => {
@@ -338,13 +338,37 @@ test('Bài tập UI Movies', async ({ page }) => {
     const dataGenres = await card.getAttribute('data-genres');
 
     const titleText = await card.locator('.ant-card-meta-detail span').nth(0).innerText();
-    // const titleText = await card
-    //   .locator(".//div[@class='ant-card-meta-title']//span")
-    //   .nth(0)
-    //   .innerText();
-    const ratingText = await card.locator('.ant-card-meta-detail span').nth(1).innerText();
+    const ratingText = Number(await card.locator('.ant-card-meta-detail span').nth(1).innerText());
+    const yearText = Number(
+      await card.locator('.ant-card-meta-description div div[style^=color] span').nth(0).innerText()
+    );
+    const genresText = await card.locator(
+      '.ant-card-meta-description div div:not([style^=color]) div'
+    );
 
-    const yearText = await card.locator('.ant-card-meta-description div div').nth(0).innerText();
+    const genresArr: string[] = [];
+    for (const genres of await genresText.all()) {
+      const text = await genres.innerText();
+      genresArr.push(text);
+    }
+
+    // const isLiked = await page.locator('.ant-card-actions button .anticon.anticon-star').evaluate(el => el.hasAttribute('style'));
+    // let likeCount = false;
+
+    // for (const isLike of await isLikedBol.all()) {
+    //   const style = await isLike.getAttribute('style');
+    //   if (style && style.includes('color')) {
+    //     likeCount = true;
+    //     moviesData.push(likeCount);
+
+    moviesData.push({
+      id: 0,
+      title: titleText,
+      year: yearText,
+      rating: ratingText,
+      genres: genresArr,
+      isLiked: false,
+    });
     await page.pause();
   }
 });

@@ -13,7 +13,7 @@ test('ví dụ về checkbox và radio', async ({ page }) => {
   await page.locator('#demo-checkbox-1').uncheck();
   await expect(page.locator('#demo-checkbox-1')).not.toBeChecked();
 
-  // Checkbox 2: setChecked(true/false)
+  // Checkbox 2: setChecked(true/false) : đảm bảo cho radio or checkbox sẽ luôn check , dù cho whatever trạng thái là gì
   await page.locator('#demo-checkbox-2').setChecked(true);
   await expect(page.locator('#demo-checkbox-2')).toBeChecked();
 
@@ -38,6 +38,88 @@ test('ví dụ về checkbox và radio', async ({ page }) => {
 // await page.locator().check()
 // expect(pageXOffset.locator).toBecheked()
 // locator.setChecked(shouldBeChecked) -> luôn đảm bảo cho radio hoặc checkbox đc check ->
+
+test('Bai tap Checkbox check và uncheck', async ({ page }) => {
+  await page.goto('https://demoapp-sable-gamma.vercel.app/');
+  await page.getByRole('link', { name: 'Bài 4: Mouse Actions' }).click();
+  await page.getByRole('tab', { name: '☑️ Checkboxes & Radio' }).click();
+  await page.getByRole('heading', { name: '☑️ Basic Checkboxes' }).scrollIntoViewIfNeeded();
+
+  await page.locator("//input[@data-testid='basic-checkbox-1']").check();
+  await page.locator("//input[@data-testid='basic-checkbox-2']").check();
+  await page.locator("//input[@data-testid='basic-checkbox-3']").check();
+  await page.locator("//input[@data-testid='basic-checkbox-4']").setChecked(true);
+
+  await expect(page.locator("//input[@data-testid='basic-checkbox-1']")).toBeChecked();
+  await expect(page.locator("//input[@data-testid='basic-checkbox-2']")).toBeChecked();
+  await expect(page.locator("//input[@data-testid='basic-checkbox-3']")).toBeChecked();
+  await expect(page.locator("//input[@data-testid='basic-checkbox-4']")).toBeChecked();
+
+  await page.pause;
+});
+
+test('Bai tap radio check và uncheck', async ({ page }) => {
+  await page.goto('https://demoapp-sable-gamma.vercel.app/');
+  await page.getByRole('link', { name: 'Bài 4: Mouse Actions' }).click();
+  await page.getByRole('tab', { name: '☑️ Checkboxes & Radio' }).click();
+  await page.getByRole('heading', { name: '🔘 Basic Radio Buttons' }).scrollIntoViewIfNeeded();
+
+  await page.getByRole('radio', { name: 'Small' }).check();
+  await expect(page.getByRole('radio', { name: 'Small' })).toBeChecked;
+
+  await page.getByRole('radio', { name: 'Medium' }).setChecked(false);
+  await expect(page.getByRole('radio', { name: 'Medium' })).not.toBeChecked();
+
+  await page.getByRole('radio', { name: 'Large', exact: true }).check();
+  await expect(page.getByRole('radio', { name: 'Large', exact: true })).toBeChecked();
+
+  await page.getByRole('radio', { name: 'Extra Large', exact: true }).check();
+  await expect(page.getByRole('radio', { name: 'Extra Large', exact: true })).toBeChecked();
+
+  await page.pause;
+});
+
+test('Bai tap SelectAll check và uncheck', async ({ page }) => {
+  await page.goto('https://demoapp-sable-gamma.vercel.app/');
+  await page.getByRole('link', { name: 'Bài 4: Mouse Actions' }).click();
+  await page.getByRole('tab', { name: '☑️ Checkboxes & Radio' }).click();
+
+  // Scope tab
+  const panel = page.getByRole('tabpanel', { name: '☑️ Checkboxes & Radio' });
+
+  // 1. Click Select All - Check tất cả features
+  await panel.getByRole('checkbox', { name: 'Select All' }).check();
+  await expect(panel.getByRole('checkbox', { name: 'Select All' })).toBeChecked();
+  await expect(panel.getByTestId('status-all')).toBeVisible(); // ✅ All selected
+
+  // Verify tất cả features đã được check
+  await expect(panel.getByRole('checkbox', { name: 'Feature 1' })).toBeChecked();
+  await expect(panel.getByRole('checkbox', { name: 'Feature 2' })).toBeChecked();
+  await expect(panel.getByRole('checkbox', { name: 'Feature 3' })).toBeChecked();
+  await expect(panel.getByRole('checkbox', { name: 'Feature 4' })).toBeChecked();
+
+  // 2. Uncheck Select All - Uncheck tất cả
+  await panel.getByRole('checkbox', { name: 'Select All' }).uncheck();
+  await expect(panel.getByTestId('status-none')).toBeVisible(); // ❌ None selected
+
+  // 3. Check từng feature riêng lẻ - Select All sẽ thành indeterminate
+  await panel.getByRole('checkbox', { name: 'Feature 1' }).check();
+  await panel.getByRole('checkbox', { name: 'Feature 2' }).check();
+  await expect(panel.getByTestId('status-partial')).toBeVisible(); // ⚠️ Partially selected
+
+  // 4. Check tất cả features bằng loop
+  const features = ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'];
+  for (const name of features) {
+    await panel.getByRole('checkbox', { name }).check();
+  }
+  await expect(panel.getByTestId('status-all')).toBeVisible();
+
+  // 5. Uncheck bằng cách click Select All khi đã checked
+  await panel.getByRole('checkbox', { name: 'Select All' }).uncheck();
+  await expect(panel.getByTestId('status-none')).toBeVisible();
+
+  await page.pause();
+});
 
 test('ví dụ về dropdown', async ({ page }) => {
   await page.goto('https://demoapp-sable-gamma.vercel.app/');

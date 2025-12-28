@@ -36,7 +36,7 @@ import { performance } from 'node:perf_hooks';
 // test.describe('Trang nhan su anh tester', () => {
 //     test('TC01. Kich ban dang nhap va kiem tra widget', async ({ page }) => {
 
-//        await test.step('Buoc 1: Dieu huong va dang nhap', async()=>{
+//        await test.step('Buoc 1: Die0u huong va dang nhap', async()=>{
 //             await page.goto('https://hrm.anhtester.com/erp/login');
 //             await page.getByRole('textbox', { name: 'Your Username' }).click();
 //             await page.getByRole('textbox', { name: 'Your Username' }).fill('admin_example');
@@ -127,3 +127,4 @@ import { performance } from 'node:perf_hooks';
 //   //const wait locator status.getText() => Button Clicked Successfully!
 //   await expect(page.locator('#status')).toContainText('Button Clicked Successfully!');
 // });
+

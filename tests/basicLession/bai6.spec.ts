@@ -42,6 +42,8 @@ test('hover trong PW', async ({ page }) => {
   await expect(page.getByRole('tooltip')).toBeVisible();
 
   await page.pause();
+
+  //setTimeout(()=> {debugger}, 3000);
 });
 //button[normalize-space(.)='Disable Button']
 
@@ -51,6 +53,7 @@ test('Click element thật và giả', async ({ page }) => {
 
   await page.getByRole('link', { name: 'Bài 4: Mouse Actions' }).click();
 
+  // await page.locator('//button', { hasText: 'Disable Button' }).click();
   await page.locator("//button[normalize-space(.)='Disable Button']").click();
   await page.locator("//button[normalize-space(.)='Click Me (Button)']").click();
   // await page.locator("//span[text()='Click Me (Span)']").click();
@@ -80,9 +83,9 @@ test('Click nhiều button 1 lúc', async ({ page }) => {
   await page.locator('#ac-process').click();
 
   const successMessage = page.locator('.ant-space-item .ant-alert-message');
-  // const successMessageTxtResult = await successMessage.innerText();
   await expect(successMessage).toContainText('Processing Complete!');
-
+  // const successMessageTxtResult = await successMessage.innerText();
+  // await expect(successMessageTxtResult).toEqual('Processing Complete!');
   await page.pause();
 });
 
