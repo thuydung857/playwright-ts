@@ -9,6 +9,8 @@ import {
   getMonth,
   getYear,
 } from 'date-fns';
+
+
 test('ví dụ date picker', async ({ page }) => {
   //date la 1 doi tuogn object o trong JS/TS {}
   // HN +7 -> UTc -7
@@ -83,13 +85,13 @@ async function selectDateDemo2(page: Page, ymd: string) {
   //validate input
   const parsed = parse(ymd, 'yyyy-MM-dd', new Date());
   if (!isValid(parsed)) {
-    throw new Error('Ngay khong hop le', ymd);
+    throw new Error(`Ngay khong hop le: ${ymd}`);
   }
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   if (parsed > today) {
-    throw new Error('Khong the chon ngay tuong lai', ymd);
+    throw new Error(`Khong the chon ngay tuong lai: ${ymd}`);
   }
 
   const demo2Title = 'Demo 2: Dropdown Navigation + Today highlight + Disable future dates';
@@ -110,6 +112,7 @@ async function selectDateDemo2(page: Page, ymd: string) {
   await dayCell.click();
   await expect(page.locator('#dp2-selected')).toHaveText(ymd);
 }
+
 test('ví dụ date picker2', async ({ page }) => {
   await page.goto('https://demoapp-sable-gamma.vercel.app/');
 

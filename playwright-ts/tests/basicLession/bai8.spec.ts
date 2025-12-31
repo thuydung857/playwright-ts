@@ -9,7 +9,7 @@ test('ví dụ về upload file', async ({ page }) => {
 
   const visible = page.locator('#visible-input');
   //PW tự động upload file cho chúng ta -> ok
-  await visible.setInputFiles('tests/fixtures/sample1.txt');
+  await visible.setInputFiles('tests/basicLession/fixtures/sample1.txt');
   //div[contains(text(), '1) Input hiển thị') and @class='ant-card-head-title']/ancestor::div[@class='ant-card-head']/following-sibling::div//span
   await expect(
     page
@@ -19,19 +19,20 @@ test('ví dụ về upload file', async ({ page }) => {
       .nth(1)
   ).toContainText('sample1.txt');
 
+  //2)Upload file ma locator co input bi an (hidden)
   const hidden = page.locator('#hidden-input-upload');
-  await hidden.setInputFiles('tests/fixtures/sample1.txt');
+  await hidden.setInputFiles('tests/basicLession/fixtures/sample1.txt');
   await expect(page.locator('#hidden-input-upload')).toBeAttached();
 
   // 3) Bắt sự kiện filechooser khi bắt buộc phải click nút
   const chooserPromise = page.waitForEvent('filechooser');
   await page.locator('#fancy-button').click();
   const chooser = await chooserPromise;
-  await chooser.setFiles('tests/fixtures/sample1.txt');
+  await chooser.setFiles('tests/basicLession/fixtures/sample1.txt');
 
   // upload nhieu file
   const multi = page.locator('#multi-input');
-  await multi.setInputFiles(['tests/fixtures/sample1.txt', 'tests/fixtures/sample2.txt']);
+  await multi.setInputFiles(['tests/basicLession/fixtures/sample1.txt', 'tests/basicLession/fixtures/sample2.txt']);
   await expect(page.locator('text=Số file:').nth(0)).toContainText('2');
   await page.pause();
   // Xoá
