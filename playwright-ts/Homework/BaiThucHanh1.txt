@@ -1,0 +1,2 @@
+Bài tập về nhà: 
+Làm TC4 -> TC7  và TC10 -> TC13 phần LoginPage. HRM
