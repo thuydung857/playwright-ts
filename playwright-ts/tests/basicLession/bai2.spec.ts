@@ -127,4 +127,3 @@ import { performance } from 'node:perf_hooks';
 //   //const wait locator status.getText() => Button Clicked Successfully!
 //   await expect(page.locator('#status')).toContainText('Button Clicked Successfully!');
 // });
-
